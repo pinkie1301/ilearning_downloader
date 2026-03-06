@@ -108,9 +108,7 @@
 
         const zip = new JSZip();
         const btnSelect = document.getElementById('select-download-btn');
-        const btnAll = document.getElementById('bulk-download-btn');
         if (btnSelect) btnSelect.disabled = true;
-        if (btnAll) btnAll.disabled = true;
 
         const total = filesToDownload.length;
         let count = 0;
@@ -167,18 +165,7 @@
             showToast(`❌ 出錯了: ${error.message}`, true);
         } finally {
             if (btnSelect) btnSelect.disabled = false;
-            if (btnAll) btnAll.disabled = false;
         }
-    }
-
-    // --- 一鍵下載全部 ---
-    async function downloadAllFilesAsZip() {
-        const totalFiles = collectDownloadableFiles();
-        if (totalFiles.length === 0) {
-            showToast("找不到可下載的「檔案」或「PDF檔」！", true);
-            return;
-        }
-        await downloadFilesAsZip(totalFiles);
     }
 
     // --- 顯示檔案勾選面板 (位於 toast 區域) ---
@@ -319,7 +306,7 @@
 
         // --- 下載按鈕 ---
         const downloadBtn = document.createElement('button');
-        downloadBtn.textContent = '⬇ 下載勾選的檔案';
+        downloadBtn.textContent = '下載勾選的檔案';
         Object.assign(downloadBtn.style, {
             padding: '10px',
             backgroundColor: '#007bff',
@@ -350,11 +337,10 @@
         document.body.appendChild(panel);
     }
 
-    // --- 建立兩個下載按鈕 ---
+    // 按鈕「下載」— 開啟勾選面板
     function createBulkDownloadButton() {
         if (document.getElementById('select-download-btn')) return;
 
-        // 按鈕 a：「下載」— 開啟勾選面板
         const selectBtn = document.createElement('button');
         selectBtn.id = 'select-download-btn';
         selectBtn.title = '選取檔案下載 (ZIP)';
@@ -362,7 +348,7 @@
         selectBtn.onclick = showFileSelectionPanel;
         Object.assign(selectBtn.style, {
             position: 'fixed',
-            bottom: '11rem',
+            bottom: '8rem',
             right: '2rem',
             width: '36px',
             height: '36px',
@@ -379,32 +365,6 @@
             zIndex: '9999'
         });
         document.body.appendChild(selectBtn);
-
-        // 按鈕 b：「下載全部」— 一鍵下載所有檔案
-        const allBtn = document.createElement('button');
-        allBtn.id = 'bulk-download-btn';
-        allBtn.title = '一鍵下載所有教材檔案 (ZIP)';
-        allBtn.innerHTML = '📦';
-        allBtn.onclick = downloadAllFilesAsZip;
-        Object.assign(allBtn.style, {
-            position: 'fixed',
-            bottom: '8rem',
-            right: '2rem',
-            width: '36px',
-            height: '36px',
-            backgroundColor: '#28a745',
-            color: 'white',
-            border: 'none',
-            borderRadius: '50%',
-            fontSize: '20px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-            zIndex: '9999'
-        });
-        document.body.appendChild(allBtn);
     }
 
     // --- 原有功能函式 ---
@@ -553,7 +513,11 @@
                 container.innerHTML = "";
             }
 
+            const existingSortContainer = document.getElementById('week-sort-container');
+            if (existingSortContainer) existingSortContainer.remove();
+
             const sortContainer = document.createElement('div');
+            sortContainer.id = 'week-sort-container';
             sortContainer.className = 'mb-3';
             sortContainer.innerHTML = `
                 <select class="form-select" id="week-sort-order">
