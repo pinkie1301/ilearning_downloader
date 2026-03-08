@@ -379,7 +379,7 @@
         const selectBtn = document.createElement('button');
         selectBtn.id = 'select-download-btn';
         selectBtn.title = '選取檔案下載 (ZIP)';
-        selectBtn.innerHTML = '📋';
+        selectBtn.innerHTML = '⬇️';
         selectBtn.onclick = showFileSelectionPanel;
         Object.assign(selectBtn.style, {
             position: 'fixed',
