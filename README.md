@@ -1,5 +1,8 @@
 # 中原 iLearning 2.0 頁面體驗增強
 
+**重製聲明：此腳本為根據 [Greasy Fork 原始腳本](https://greasyfork.org/zh-TW/scripts/529037) 修改之版本**
+
+---
 一個 Tampermonkey / iOS Safari Userscript Manager 使用者腳本，為 [中原大學 iLearning 2.0](https://ilearning.cycu.edu.tw/) 平台新增以下功能：
 
 | 功能 | 適用頁面 | 
@@ -12,6 +15,7 @@
 > **相容性**：支援桌面版 Chrome / Firefox / Edge（Tampermonkey），以及 **iOS Safari 15+**（搭配 [Userscripts](https://apps.apple.com/app/userscripts/id1463298887)
 
 ---
+
 
 ## 安裝方式
 
@@ -59,9 +63,3 @@
 1. 點進任意影片播放頁面
 2. 點擊右下角 **紫色** 圓形按鈕（下載箭頭 + 「影片」標籤）
 3. 桌面版：直接下載 MP4 影片檔案；iOS：開新分頁後長按影片選「儲存影片」
-
----
-
-## 腳本來源
-
-- **原始腳本發布於 [Greasy Fork](https://greasyfork.org/zh-TW/scripts/529037)**
