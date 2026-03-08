@@ -379,25 +379,33 @@
         const selectBtn = document.createElement('button');
         selectBtn.id = 'select-download-btn';
         selectBtn.title = '選取檔案下載 (ZIP)';
-        selectBtn.innerHTML = '⬇️';
+        selectBtn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            <span style="font-size:10px;font-weight:bold;margin-top:2px;line-height:1;">下載</span>
+        `;
         selectBtn.onclick = showFileSelectionPanel;
         Object.assign(selectBtn.style, {
             position: 'fixed',
             bottom: 'max(8rem, calc(env(safe-area-inset-bottom) + 8rem))',
             right: '2rem',
-            width: '36px',
-            height: '36px',
-            backgroundColor: '#007bff',
+            width: '52px',
+            height: '52px',
+            backgroundColor: '#16a34a',
             color: 'white',
             border: 'none',
             borderRadius: '50%',
-            fontSize: '20px',
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
-            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-            zIndex: '9999'
+            boxShadow: '0px 4px 12px rgba(22, 163, 74, 0.5)',
+            zIndex: '9999',
+            gap: '1px'
         });
         document.body.appendChild(selectBtn);
     }
@@ -419,28 +427,34 @@
         const button = document.createElement('button');
         button.id = 'pdf-download-btn';
         button.title = '下載 PDF';
-        button.innerHTML = '➜';
+        button.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            <span style="font-size:10px;font-weight:bold;margin-top:2px;line-height:1;">PDF</span>
+        `;
         button.onclick = function () { window.open(fullUrl, '_blank'); };
 
         Object.assign(button.style, {
             position: 'fixed',
             bottom: 'max(8rem, calc(env(safe-area-inset-bottom) + 8rem))',
             right: '2rem',
-            width: '36px',
-            height: '36px',
-            backgroundColor: 'orange',
+            width: '52px',
+            height: '52px',
+            backgroundColor: '#e8500a',
             color: 'white',
             border: 'none',
             borderRadius: '50%',
-            fontSize: '26px',
-            padding: '0 0 2px 0',
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
-            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-            transform: 'rotate(90deg)',
-            zIndex: '9999'
+            boxShadow: '0px 4px 12px rgba(232, 80, 10, 0.5)',
+            zIndex: '9999',
+            gap: '1px'
         });
 
         document.body.appendChild(button);
@@ -644,7 +658,14 @@
         if (match && match.length > 0) {
             const mp4Url = match[0];
             const button = document.createElement('button');
-            button.innerHTML = '➜';
+            button.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                <span style="font-size:10px;font-weight:bold;margin-top:2px;line-height:1;">影片</span>
+            `;
             button.onclick = function () {
                 // iOS Safari 不支援 <a download> 觸發下載，改為開新分頁讓使用者手動長按儲存
                 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -664,10 +685,11 @@
             };
 
             Object.assign(button.style, {
-                position: 'fixed', bottom: 'max(8rem, calc(env(safe-area-inset-bottom) + 8rem))', right: '2rem', width: '36px', height: '36px',
-                backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '50%',
-                fontSize: '26px', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                cursor: 'pointer', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', transform: 'rotate(90deg)', zIndex: '9999'
+                position: 'fixed', bottom: 'max(8rem, calc(env(safe-area-inset-bottom) + 8rem))', right: '2rem',
+                width: '52px', height: '52px',
+                backgroundColor: '#7c3aed', color: 'white', border: 'none', borderRadius: '50%',
+                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                cursor: 'pointer', boxShadow: '0px 4px 12px rgba(124, 58, 237, 0.5)', zIndex: '9999', gap: '1px'
             });
             document.body.appendChild(button);
         }
